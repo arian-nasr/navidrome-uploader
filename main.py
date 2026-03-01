@@ -29,7 +29,10 @@ def upload_file():
             filename = secure_filename(file.filename)
             file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
             # File saved successfully, return a success message
-            return f'File {filename} uploaded successfully', 200
+            return f'''
+            <h1>File {filename} uploaded successfully</h1>
+            <a href="{request.url}"><button>Upload another file</button></a>
+            ''', 200
     return '''
     <!doctype html>
     <title>Upload new File</title>
