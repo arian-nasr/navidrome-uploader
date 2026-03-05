@@ -1,5 +1,5 @@
 import os
-from flask import Flask, request
+from flask import Flask, request, render_template
 from werkzeug.utils import secure_filename
 
 UPLOAD_FOLDER = '/opt/navidrome/music'
@@ -16,33 +16,21 @@ def allowed_file(filename):
 def upload_file():
     if request.method == 'POST':
         if 'file' not in request.files:
-            return 'No file part', 400
+            return render_template('error.html', error_message='No file part in the request'), 400
         files = request.files.getlist('file')
         for file in files:
             if file.filename == '':
-                return 'No selected file', 400
+                return render_template('error.html', error_message='No selected file'), 400
             if file and allowed_file(file.filename):
                 filename = secure_filename(file.filename)
                 file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
             else:
-                return 'File extension not allowed', 400
-        return f'''
-        <!doctype html>
-        <title>Upload successful</title>
-        <h1>{len(files)} file(s) uploaded successfully</h1>
-        <a href="/"><button>Upload another file</button></a>
-        ''', 200
+                return render_template('error.html', error_message=f'File "{file.filename}" is not allowed. Allowed types: {", ".join(ALLOWED_EXTENSIONS)}'), 400
 
-    return '''
-    <!doctype html>
-    <title>Upload new File</title>
-    <button onclick="window.location.href='/outpost.goauthentik.io/sign_out'">Logout</button>
-    <h1>Upload new File</h1>
-    <form method=post enctype=multipart/form-data>
-      <input type=file name=file multiple>
-      <input type=submit value=Upload>
-    </form>
-    '''
+        return render_template('success.html', success_message=f'{len(files)} file(s) uploaded successfully!')
+
+    return render_template('index.html')
+
 
 if __name__ == '__main__':
     app.run(host='192.168.2.24', port=5001, debug=False)

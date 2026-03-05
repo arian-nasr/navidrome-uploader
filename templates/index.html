@@ -1,0 +1,22 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Upload Music</title>
+    <style>
+        body {
+            background-color: #2B2726;
+            color: #FFFFFF;
+        }
+    </style>
+</head>
+<body>
+    <button onclick="window.location.href='/outpost.goauthentik.io/sign_out'">Logout</button>
+    <h1>Upload new File</h1>
+    <form method=post enctype=multipart/form-data>
+      <input type=file name=file multiple>
+      <input type=submit value=Upload>
+    </form>
+</body>
+</html>
