@@ -30,7 +30,7 @@ def upload_file():
         <!doctype html>
         <title>Upload successful</title>
         <h1>{len(files)} file(s) uploaded successfully</h1>
-        <a href="{request.url}"><button>Upload another file</button></a>
+        <a href="/"><button>Upload another file</button></a>
         ''', 200
 
     return '''
