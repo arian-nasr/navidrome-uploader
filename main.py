@@ -1,3 +1,8 @@
+# Navidrome Upload Utility
+# Arian Nasr
+# March 6, 2026
+
+
 import os
 from flask import Flask, request, render_template
 from werkzeug.utils import secure_filename
