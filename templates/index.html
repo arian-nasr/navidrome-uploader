@@ -5,12 +5,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Upload Music</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}" type="text/css" />
+    <script src="{{ url_for('static', filename='js/dropzone.min.js') }}"></script>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/dropzone.min.css') }}" type="text/css" />
 </head>
 <body>
-    <h1>Upload new File</h1>
-    <form method=post enctype=multipart/form-data>
-      <input type=file name=file multiple>
-      <input type=submit value=Upload>
-    </form>
+    <h1>Drag & drop files here or <b>browse</b></h1>
+    <script>
+        Dropzone.options.myDropzone = {
+            parallelUploads: 2,
+            uploadMultiple: true,
+            acceptedFiles: 'audio/*'
+        };
+    </script>
+    <form action="/"
+          class="dropzone"
+          id="my-dropzone"></form>
 </body>
 </html>
