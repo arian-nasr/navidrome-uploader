@@ -1,4 +1,7 @@
 body {
-    background-color: #2B2726;
+    background-color: #252526;
     color: #FFFFFF;
+}
+.dropzone {
+    background: #3e3e42;
 }
