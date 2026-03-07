@@ -1,4 +1,10 @@
 body {
-    background-color: #2B2726;
+    background-color: #252526;
     color: #FFFFFF;
+}
+.dropzone {
+    background: #3e3e42 !important;
+    border-radius: 2rem !important;
+    border-style: dashed !important;
+    border-color: #FFFFFF !important;
 }
