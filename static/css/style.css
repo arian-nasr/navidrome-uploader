@@ -3,5 +3,5 @@ body {
     color: #FFFFFF;
 }
 .dropzone {
-    background: #3e3e42;
+    background: #3e3e42 !important;
 }
