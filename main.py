@@ -6,7 +6,9 @@ import os
 from flask import Flask, request, render_template
 from werkzeug.utils import secure_filename
 
-UPLOAD_FOLDER = '/opt/navidrome/music'
+UPLOAD_FOLDER = os.environ.get('NAVIDROME_MUSIC_FOLDER', '/opt/navidrome/music')
+BIND_ADDRESS = os.environ.get('BIND_ADDRESS', '0.0.0.0')
+BIND_PORT = int(os.environ.get('BIND_PORT', 5001))
 ALLOWED_EXTENSIONS = {'flac', 'mp3', 'wav'}
 
 app = Flask(__name__)
@@ -36,4 +38,4 @@ def upload_file():
 
 
 if __name__ == '__main__':
-    app.run(host='192.168.2.24', port=5001, debug=False)
+    app.run(host=BIND_ADDRESS, port=BIND_PORT, debug=False)
