@@ -2,3 +2,4 @@ venv/
 setup.sh
 navidrome-upload.service
 .idea/
+.env
