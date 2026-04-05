@@ -1,0 +1,47 @@
+[Unit]
+Description=Navidrome Music Uploader Service
+After=network.target,navidrome.service
+
+[Service]
+Type=simple
+User=navidrome-uploader
+Group=navidrome-uploader
+WorkingDirectory=/opt/navidrome-uploader
+Environment="PATH=/opt/navidrome-uploader/venv/bin"
+EnvironmentFile=/etc/default/navidrome-uploader/.env
+ExecStart=/opt/navidrome-uploader/venv/bin/gunicorn -c gunicorn.conf.py main:app
+Restart=on-failure
+RestartSec=30
+
+NoNewPrivileges=yes
+CapabilityBoundingSet=
+AmbientCapabilities=
+
+ProtectSystem=strict
+ProtectHome=yes
+PrivateTmp=yes
+ReadWritePaths=/opt/uploader
+InaccessiblePaths=/boot /mnt /media
+
+PrivateDevices=yes
+ProtectKernelTunables=yes
+ProtectKernelModules=yes
+ProtectKernelLogs=yes
+ProtectControlGroups=yes
+ProtectClock=yes
+ProtectHostname=yes
+RestrictNamespaces=yes
+RestrictRealtime=yes
+RestrictSUIDSGID=yes
+LockPersonality=yes
+
+SystemCallFilter=@system-service
+SystemCallErrorNumber=EPERM
+
+PrivateNetwork=no
+RestrictAddressFamilies=AF_INET AF_INET6 AF_UNIX
+UMask=0027
+
+
+[Install]
+WantedBy=multi-user.target
