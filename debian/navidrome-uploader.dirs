@@ -1,0 +1,7 @@
+opt/navidrome-uploader
+opt/navidrome-uploader/templates
+opt/navidrome-uploader/static
+opt/navidrome-uploader/static/css
+opt/navidrome-uploader/static/js
+etc/default/navidrome-uploader
+
