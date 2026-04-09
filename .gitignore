@@ -4,3 +4,4 @@ navidrome-upload.service
 .idea/
 .env
 /README.md
+__pycache__/
