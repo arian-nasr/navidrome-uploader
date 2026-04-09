@@ -1,3 +1,9 @@
+navidrome-uploader (0.1.0-1) unstable; urgency=medium
+
+  * Disable gunicorn control socket in systemd service unit
+
+ -- Arian Nasr <arian@2ari.ca>  Thu, 09 Apr 2026 01:58:00 -0400
+
 navidrome-uploader (0.1.0) unstable; urgency=medium
 
   * Add Debian packaging with systemd service integration and venv setup.
