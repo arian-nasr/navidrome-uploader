@@ -20,7 +20,7 @@ AmbientCapabilities=
 ProtectSystem=strict
 ProtectHome=yes
 PrivateTmp=yes
-ReadWritePaths=/opt/navidrome-uploader
+ReadWritePaths=/opt/navidrome-uploader /opt/navidrome/music
 InaccessiblePaths=/boot /mnt /media
 
 PrivateDevices=yes

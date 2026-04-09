@@ -1,0 +1,10 @@
+#!/usr/bin/make -f
+
+%:
+	dh $@
+
+override_dh_install:
+	dh_install
+	install -d debian/navidrome-uploader/etc/default/navidrome-uploader
+	install -m 0640 .env.example debian/navidrome-uploader/etc/default/navidrome-uploader/.env
+
