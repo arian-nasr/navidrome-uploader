@@ -1,3 +1,9 @@
+navidrome-uploader (0.1.0-2) unstable; urgency=high
+
+  * Run pip install stage as navidrome-uploader user instead of root
+
+ -- Arian Nasr <arian@2ari.ca>  Tue, 14 Apr 2026 12:11:00 -0400
+
 navidrome-uploader (0.1.0-1) unstable; urgency=medium
 
   * Disable gunicorn control socket in systemd service unit
