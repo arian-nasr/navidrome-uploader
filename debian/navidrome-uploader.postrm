@@ -8,6 +8,7 @@ fi
 if [ "$1" = "purge" ]; then
     rm -rf /etc/default/navidrome-uploader
     rm -rf /opt/navidrome-uploader/venv
+    rm -rf /opt/navidrome-uploader/__pycache__
 fi
 
 exit 0
