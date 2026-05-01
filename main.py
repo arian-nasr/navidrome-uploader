@@ -8,9 +8,11 @@ from werkzeug.utils import secure_filename
 
 UPLOAD_FOLDER = os.environ.get('NAVIDROME_MUSIC_FOLDER', '/opt/navidrome/music')
 ALLOWED_EXTENSIONS = {'flac', 'mp3', 'wav'}
+MAX_CONTENT_LENGTH = 500 * 1024 * 1024
 
 app = Flask(__name__)
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
+app.config['MAX_CONTENT_LENGTH'] = MAX_CONTENT_LENGTH
 
 def allowed_file(filename):
     return '.' in filename and \
