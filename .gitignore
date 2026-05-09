@@ -5,3 +5,4 @@ navidrome-upload.service
 .env
 /README.md
 __pycache__/
+*.deb
