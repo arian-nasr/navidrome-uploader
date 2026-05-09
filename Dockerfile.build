@@ -1,0 +1,27 @@
+# Navidome-Uploader Dockerfile for building .deb packages
+# Arian Nasr
+# May 9, 2026
+
+FROM debian:13-slim
+
+# Prevent interactive prompts
+ENV DEBIAN_FRONTEND=noninteractive
+
+RUN apt-get update && apt-get install -y \
+    build-essential \
+    debhelper \
+    devscripts \
+    fakeroot \
+    python3 \
+    python3-venv \
+    && rm -rf /var/lib/apt/lists/*
+
+WORKDIR /build/src
+
+RUN mkdir -p /dist
+
+COPY . .
+
+RUN chmod +x release/build-deb.sh
+
+CMD ["sh", "-c", "./release/build-deb.sh && mv ../*.deb /dist/"]
