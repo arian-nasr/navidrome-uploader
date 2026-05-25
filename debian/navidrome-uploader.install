@@ -5,5 +5,5 @@ requirements.txt opt/navidrome-uploader/
 templates/* opt/navidrome-uploader/templates/
 static/css/* opt/navidrome-uploader/static/css/
 static/js/* opt/navidrome-uploader/static/js/
-contrib/navidrome-uploader.service lib/systemd/system/navidrome-uploader.service
+contrib/navidrome-uploader.service lib/systemd/system/
 debian/wheels/* opt/navidrome-uploader/wheels/
