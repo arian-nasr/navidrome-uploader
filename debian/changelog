@@ -1,3 +1,22 @@
+navidrome-uploader (0.2.0) unstable; urgency=medium
+
+  * Packaging:
+    - Bundle pip wheels during build for offline host installation
+    - Ensure debian build environment includes pip and wheel modules
+  * Docker:
+    - Implement containerized debian packaging automation scripts
+  * Security:
+    - Add MAX_CONTENT_LENGTH to prevent upload DoS vectors
+  * Bug Fixes:
+    - Fix apt purge leaving pycache and systemd directory remnants
+  * Frontend:
+    - Change Dropzone.js upstream source location
+  * Maintenance:
+    - Add the open source software MIT license
+    - Upstream package & dependency updates
+
+ -- Arian Nasr <arian@2ari.ca>  Mon, 25 May 2026 18:31:00 -0400
+
 navidrome-uploader (0.1.0-2) unstable; urgency=high
 
   * Run pip install stage as navidrome-uploader user instead of root

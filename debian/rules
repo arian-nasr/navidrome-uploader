@@ -3,6 +3,11 @@
 %:
 	dh $@
 
+override_dh_auto_build:
+	dh_auto_build
+	mkdir -p debian/wheels
+	python3 -m pip wheel --no-cache-dir -r requirements.txt pip -w debian/wheels
+
 override_dh_install:
 	dh_install
 	install -d debian/navidrome-uploader/etc/default/navidrome-uploader
