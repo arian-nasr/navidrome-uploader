@@ -8,5 +8,5 @@ Rules-Requires-Root: no
 
 Package: navidrome-uploader
 Architecture: all
-Depends: ${misc:Depends}, adduser, python3, python3-venv
+Depends: ${misc:Depends}, adduser, python3, python3-venv, python3-pip, python3-wheel
 Description: Navidrome Web Upload Utility
