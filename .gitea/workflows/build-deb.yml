@@ -20,7 +20,7 @@ jobs:
         run: ./release/build-docker.sh
 
       - name: Upload Build Artifact
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v3
         with:
           name: navidrome-uploader-deb
           path: output/*.deb
