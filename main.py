@@ -3,7 +3,7 @@
 # March 6, 2026
 
 import os
-from flask import Flask, request, render_template
+from flask import Flask, request, render_template, jsonify
 from werkzeug.utils import secure_filename
 
 UPLOAD_FOLDER = os.environ.get('NAVIDROME_MUSIC_FOLDER', '/opt/navidrome/music')
@@ -25,13 +25,15 @@ def ping():
 @app.route('/', methods=['GET', 'POST'])
 def upload_file():
     if request.method == 'POST':
+        uploaded_count = 0
         for key, file in request.files.items():
             if key.startswith('file') and file and allowed_file(file.filename) and file.filename != '':
                 filename = secure_filename(file.filename)
                 file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
+                uploaded_count += 1
             else:
-                return render_template('error.html', error_message=f'File is not allowed.'), 400
+                return jsonify({"error": f"File '{file.filename}' is not allowed or is empty."}), 400
 
-        return render_template('success.html', success_message=f'{len(request.files)} file(s) uploaded successfully!'), 200
+        return jsonify({"message": f"{uploaded_count} file(s) uploaded successfully!"}), 200
 
     return render_template('index.html'), 200
