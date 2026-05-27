@@ -8,4 +8,8 @@ cd "${PROJECT_ROOT}"
 
 docker build --platform linux/amd64 -t uploader-builder -f Dockerfile.build .
 
-docker run --rm --platform linux/amd64 -v "$(pwd)/output:/dist" uploader-builder
+docker run --name uploader-builder-container --platform linux/amd64 uploader-builder
+
+docker cp uploader-builder-container:/dist/. output/
+
+docker rm uploader-builder-container
