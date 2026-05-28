@@ -2,6 +2,10 @@ name: Build Debian Package
 
 on:
   push:
+    branches:
+      - '**'
+    tags:
+      - 'v*'
 
 jobs:
   build:
