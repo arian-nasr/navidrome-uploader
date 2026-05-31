@@ -23,9 +23,15 @@ jobs:
       - name: Build Debian Package
         run: ./release/build-docker.sh
 
+      - name: Get Deb Filename
+        id: get_deb_name
+        run: |
+          DEB_FILENAME=$(ls output/*.deb | xargs basename)
+          echo "filename=$DEB_FILENAME" >> $GITHUB_OUTPUT
+
       - name: Upload Build Artifact
         uses: actions/upload-artifact@v3
         with:
-          name: navidrome-uploader-deb
-          path: output/*.deb
+          name: ${{ steps.get_deb_name.outputs.filename }}
+          path: output/${{ steps.get_deb_name.outputs.filename }}
           retention-days: 5
