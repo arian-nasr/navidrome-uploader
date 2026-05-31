@@ -1,0 +1,36 @@
+# Navidome-Uploader Dockerfile for testing .deb packages
+# Arian Nasr
+# May 31, 2026
+
+FROM debian:stable
+
+# Prevent interactive prompts
+ENV DEBIAN_FRONTEND=noninteractive
+
+RUN apt-get update && apt-get install -y \
+    curl \
+    python3 \
+    python3-venv \
+    python3-pip \
+    && rm -rf /var/lib/apt/lists/*
+
+# Copy the built deb package into the container
+COPY output/*.deb /tmp/navidrome-uploader.deb
+
+RUN apt-get update && \
+    apt-get install -y -f /tmp/navidrome-uploader.deb && \
+    rm -rf /var/lib/apt/lists/*
+
+RUN mkdir -p /opt/navidrome/music && \
+    chown -R navidrome-uploader:navidrome-uploader /opt/navidrome/music
+
+COPY e2e/ /e2e/
+
+RUN python3 -m venv /e2e/venv && \
+    /e2e/venv/bin/pip install --no-cache-dir -r /e2e/requirements.txt
+
+RUN chmod +x /e2e/test-entrypoint.sh
+
+WORKDIR /e2e
+
+ENTRYPOINT ["/e2e/test-entrypoint.sh"]
