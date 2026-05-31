@@ -1,4 +1,4 @@
-name: Build Debian Package
+name: Build and Test Debian Package
 
 on:
   push:
@@ -10,7 +10,9 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-
+    outputs:
+      deb_filename: ${{ steps.get_deb_name.outputs.filename }}
+    
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -35,3 +37,26 @@ jobs:
           name: ${{ steps.get_deb_name.outputs.filename }}
           path: output/${{ steps.get_deb_name.outputs.filename }}
           retention-days: 5
+
+  test:
+    runs-on: ubuntu-latest
+    needs: build # only run tests if the build job succeeded
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Create output directory
+        run: mkdir -p output
+
+      - name: Download Build Artifact
+        uses: actions/download-artifact@v3
+        with:
+          name: ${{ needs.build.outputs.deb_filename }}
+          path: output/
+
+      - name: Build Test Docker Image
+        run: docker build -t uploader-tester -f Dockerfile.test .
+
+      - name: Run E2E Test Suite
+        run: docker run --rm uploader-tester
