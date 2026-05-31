@@ -1,3 +1,20 @@
+navidrome-uploader (0.3.0) unstable; urgency=medium
+
+  * E2E Testing:
+    - Add Dockerfile and entrypoint script for testing .deb packages
+    - Implement initial API functional tests with pytest configuration
+    - Update CI workflow to run E2E tests automatically after package build
+  * Packaging:
+    - Change architecture from 'all' to 'amd64'
+  * CI/Build:
+    - Implement automated Gitea workflow for .deb building
+  * Refactoring:
+    - Remove unused templates
+  * Maintenance:
+    - Update Dropzone.js upstream source
+
+ -- Arian Nasr <arian@2ari.ca>  Sun, 31 May 2026 08:43:00 -0400
+
 navidrome-uploader (0.2.0) unstable; urgency=medium
 
   * Packaging:
