@@ -2,7 +2,7 @@
 # Arian Nasr
 # May 31, 2026
 
-FROM debian:stable
+FROM debian:13-slim
 
 # Prevent interactive prompts
 ENV DEBIAN_FRONTEND=noninteractive
